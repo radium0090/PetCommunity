@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
-import com.ls.www.petcommunity.MainActivity;
 import com.ls.www.petcommunity.R;
 
 import java.util.Timer;
@@ -25,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         // 默认初始化Bmob
-        Bmob.initialize(this, "c1c676e641526dc255e7dc4904eb6c86");
+        Bmob.initialize(this, "9f33544308066691f4bb046d685484b3");
 
         intent = new Intent(this, MainActivity.class);
 

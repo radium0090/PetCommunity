@@ -1,7 +1,9 @@
-package com.ls.www.petcommunity;
+package com.ls.www.petcommunity.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.ls.www.petcommunity.R;
 
 public class MainActivity extends AppCompatActivity {
 
