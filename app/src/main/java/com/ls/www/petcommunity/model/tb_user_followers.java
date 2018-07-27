@@ -4,7 +4,7 @@ import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobRelation;
 
-public class user_followers extends BmobObject {
+public class tb_user_followers extends BmobObject {
 
     public String getUserId() {
         return userId;

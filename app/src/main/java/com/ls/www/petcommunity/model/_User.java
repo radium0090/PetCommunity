@@ -14,7 +14,7 @@ public class _User extends BmobUser {
     private BmobRelation focusBook;
     private BmobRelation focusSaying;
     private Integer focusIdSum = 0;
-    private user_followers followerId;
+    private tb_user_followers followerId;
     private BmobRelation myCollection;
 
     public BmobFile getHeadPortrait() {
@@ -81,11 +81,11 @@ public class _User extends BmobUser {
         this.focusIdSum = focusIdSum;
     }
 
-    public user_followers getFollowerId() {
+    public tb_user_followers getFollowerId() {
         return followerId;
     }
 
-    public void setFollowerId(user_followers followerId) {
+    public void setFollowerId(tb_user_followers followerId) {
         this.followerId = followerId;
     }
 

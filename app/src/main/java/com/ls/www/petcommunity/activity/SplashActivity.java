@@ -24,7 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         // 默认初始化Bmob
-        Bmob.initialize(this, "app id");
+        Bmob.initialize(this, "9f33544308066691f4bb046d685484b3");
 
         intent = new Intent(this, MainActivity.class);
 
