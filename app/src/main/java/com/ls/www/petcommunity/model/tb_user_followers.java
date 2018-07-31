@@ -6,6 +6,21 @@ import cn.bmob.v3.datatype.BmobRelation;
 
 public class tb_user_followers extends BmobObject {
 
+    private String userId;
+    private BmobRelation followerId;
+    private Integer followerSum = 0;
+    private _User user;
+    private Integer messageFansSum = 0;
+    private Integer messageFansRead = 0;
+    private Integer messageTopicsSum = 0;
+    private Integer messageTopicsRead = 0;
+
+
+
+    private Integer messageNotesSum = 0;
+    private Integer messageNotesRead = 0;
+    private Integer notificationRead = 0;
+
     public String getUserId() {
         return userId;
     }
@@ -54,36 +69,36 @@ public class tb_user_followers extends BmobObject {
         this.messageFansRead = messageFansRead;
     }
 
-    public Integer getMessageSayingsSum() {
-        return messageSayingsSum;
+    public Integer getMessageTopicsSum() {
+        return messageTopicsSum;
     }
 
-    public void setMessageSayingsSum(Integer messageSayingsSum) {
-        this.messageSayingsSum = messageSayingsSum;
+    public void setMessageTopicsSum(Integer messageTopicsSum) {
+        this.messageTopicsSum = messageTopicsSum;
     }
 
-    public Integer getMessageSayingsSead() {
-        return messageSayingsSead;
+    public Integer getMessageTopicsRead() {
+        return messageTopicsRead;
     }
 
-    public void setMessageSayingsSead(Integer messageSayingsSead) {
-        this.messageSayingsSead = messageSayingsSead;
+    public void setMessageTopicsRead(Integer messageTopicsRead) {
+        this.messageTopicsRead = messageTopicsRead;
     }
 
-    public Integer getMessageBooksSum() {
-        return messageBooksSum;
+    public Integer getMessageNotesSum() {
+        return messageNotesSum;
     }
 
-    public void setMessageBooksSum(Integer messageBooksSum) {
-        this.messageBooksSum = messageBooksSum;
+    public void setMessageNotesSum(Integer messageNotesSum) {
+        this.messageNotesSum = messageNotesSum;
     }
 
-    public Integer getMessageBooksRead() {
-        return messageBooksRead;
+    public Integer getMessageNotesRead() {
+        return messageNotesRead;
     }
 
-    public void setMessageBooksRead(Integer messageBooksRead) {
-        this.messageBooksRead = messageBooksRead;
+    public void setMessageNotesRead(Integer messageNotesRead) {
+        this.messageNotesRead = messageNotesRead;
     }
 
     public Integer getNotificationRead() {
@@ -93,18 +108,5 @@ public class tb_user_followers extends BmobObject {
     public void setNotificationRead(Integer notificationRead) {
         this.notificationRead = notificationRead;
     }
-
-    private String userId;
-    private BmobRelation followerId;
-    private Integer followerSum = 0;
-    private _User user;
-    private Integer messageFansSum = 0;
-    private Integer messageFansRead = 0;
-    private Integer messageSayingsSum = 0;
-    private Integer messageSayingsSead = 0;
-    private Integer messageBooksSum = 0;
-    private Integer messageBooksRead = 0;
-    private Integer notificationRead = 0;
-
 
 }

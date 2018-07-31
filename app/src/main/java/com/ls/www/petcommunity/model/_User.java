@@ -11,8 +11,11 @@ public class _User extends BmobUser {
     private String nickName;
     private String briefIntro;
     private BmobRelation focusId;
-    private BmobRelation focusBook;
-    private BmobRelation focusSaying;
+
+
+
+    private BmobRelation focusNote;
+    private BmobRelation focusTopic;
     private Integer focusIdSum = 0;
     private tb_user_followers followerId;
     private BmobRelation myCollection;
@@ -57,20 +60,20 @@ public class _User extends BmobUser {
         this.focusId = focusId;
     }
 
-    public BmobRelation getFocusBook() {
-        return focusBook;
+    public BmobRelation getFocusNote() {
+        return focusNote;
     }
 
-    public void setFocusBook(BmobRelation focusBook) {
-        this.focusBook = focusBook;
+    public void setFocusNote(BmobRelation focusNote) {
+        this.focusNote = focusNote;
     }
 
-    public BmobRelation getFocusSaying() {
-        return focusSaying;
+    public BmobRelation getFocusTopic() {
+        return focusTopic;
     }
 
-    public void setFocusSaying(BmobRelation focusSaying) {
-        this.focusSaying = focusSaying;
+    public void setFocusTopic(BmobRelation focusTopic) {
+        this.focusTopic = focusTopic;
     }
 
     public Integer getFocusIdSum() {
