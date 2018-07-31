@@ -85,7 +85,7 @@ public class HotTabFragment extends Fragment {
         query.addWhereRelatedTo("focusId", new BmobPointer(user));
         // 查询当前用户，将当前用户的动态一并呈现
         BmobQuery<_User> query_myself = new BmobQuery<_User>();
-        query_myself.addWhereEqualTo("objectId", user.getObjectId().toString());
+        query_myself.addWhereEqualTo("objectId", user.getObjectId());
         // 合并两个条件，进行"或"查询
         List<BmobQuery<_User>> queries = new ArrayList<BmobQuery<_User>>();
         queries.add(query);
