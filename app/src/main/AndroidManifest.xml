@@ -42,7 +42,14 @@
             android:screenOrientation="portrait" />
         <activity android:name=".activity.UserHomeActivity"
             android:screenOrientation="portrait" />
-
+        <activity android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.PreviewActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.RegisterActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activity.VerifyActivity"
+            android:screenOrientation="portrait" />
 
 
 

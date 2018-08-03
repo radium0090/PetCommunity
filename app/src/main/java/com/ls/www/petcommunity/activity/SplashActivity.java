@@ -34,8 +34,8 @@ public class SplashActivity extends AppCompatActivity {
             intent = new Intent(this, MainActivity.class);
         } else {
             // 不存在当前用户，转向登录界面
-//            intent = new Intent(this, LoginActivity.class);
-            intent = new Intent(this, MainActivity.class);
+            intent = new Intent(this, LoginActivity.class);
+//            intent = new Intent(this, MainActivity.class);
         }
 
         Timer timer = new Timer();
