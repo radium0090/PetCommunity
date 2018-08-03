@@ -1,4 +1,4 @@
-package com.ls.www.petcommunity.model;
+package com.ls.www.petcommunity.model.table;
 
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;

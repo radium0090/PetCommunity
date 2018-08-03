@@ -19,8 +19,8 @@ import android.widget.Toast;
 
 import com.ls.www.petcommunity.R;
 import com.ls.www.petcommunity.activity.TopicActivity;
-import com.ls.www.petcommunity.model._User;
-import com.ls.www.petcommunity.model.tb_topic;
+import com.ls.www.petcommunity.model.table._User;
+import com.ls.www.petcommunity.model.table.tb_topic;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 

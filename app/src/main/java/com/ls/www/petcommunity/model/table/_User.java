@@ -1,4 +1,6 @@
-package com.ls.www.petcommunity.model;
+package com.ls.www.petcommunity.model.table;
+
+import com.ls.www.petcommunity.model.table.tb_user_followers;
 
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;

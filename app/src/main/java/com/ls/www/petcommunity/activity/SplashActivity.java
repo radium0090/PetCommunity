@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 import com.ls.www.petcommunity.R;
-import com.ls.www.petcommunity.model._User;
+import com.ls.www.petcommunity.model.table._User;
 
 import java.util.Timer;
 import java.util.TimerTask;

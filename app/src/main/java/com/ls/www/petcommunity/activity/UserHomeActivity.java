@@ -18,11 +18,11 @@ import android.widget.Toast;
 import com.ls.www.petcommunity.R;
 import com.ls.www.petcommunity.adapter.HomepageAdapter;
 import com.ls.www.petcommunity.model.CollectionModel;
-import com.ls.www.petcommunity.model._User;
-import com.ls.www.petcommunity.model.tb_collection;
-import com.ls.www.petcommunity.model.tb_message_fans;
-import com.ls.www.petcommunity.model.tb_topic;
-import com.ls.www.petcommunity.model.tb_user_followers;
+import com.ls.www.petcommunity.model.table._User;
+import com.ls.www.petcommunity.model.table.tb_collection;
+import com.ls.www.petcommunity.model.table.tb_message_fans;
+import com.ls.www.petcommunity.model.table.tb_topic;
+import com.ls.www.petcommunity.model.table.tb_user_followers;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
