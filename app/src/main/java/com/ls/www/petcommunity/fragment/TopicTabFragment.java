@@ -63,7 +63,7 @@ public class TopicTabFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_hot_tab_fragment,container,false);
+        view = inflater.inflate(R.layout.fragment_topic_tab,container,false);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.refresh);
         listView = (ListView) view.findViewById(R.id.sayingListView);
         initData();

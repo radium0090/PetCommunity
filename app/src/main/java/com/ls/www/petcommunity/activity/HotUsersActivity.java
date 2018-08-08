@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.ls.www.petcommunity.R;
+import com.ls.www.petcommunity.adapter.HotUserAdapter;
 import com.ls.www.petcommunity.model.CollectionModel;
+import com.ls.www.petcommunity.model.table.tb_user_followers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +31,7 @@ public class HotUsersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.hot_users);
+        setContentView(R.layout.activity_hot_user);
 
         findView();
         initialization();
@@ -45,17 +47,17 @@ public class HotUsersActivity extends AppCompatActivity {
     public void initialization() {
 
         //查询粉丝量靠前的用户，先查询他们的user_followers
-        BmobQuery<user_followers> query = new BmobQuery("user_followers");
+        BmobQuery<tb_user_followers> query = new BmobQuery("user_followers");
         query.include("user");
         query.order("-follower_sum");
-        query.findObjects(new FindListener<user_followers>() {
+        query.findObjects(new FindListener<tb_user_followers>() {
             @Override
-            public void done(List<user_followers> list, BmobException e) {
+            public void done(List<tb_user_followers> list, BmobException e) {
                 if (e == null) {
                     ids = new String[list.size()];
                     if (list.size() != 0) {
                         for (int i = 0; i < list.size(); i++) {
-                            the_collection flag = new the_collection(list.get(i).getUser().getObjectId().toString(), list.get(i).getUser().getNickName().toString(), list.get(i).getUser().getHeadPortrait().getFileUrl());
+                            CollectionModel flag = new CollectionModel(list.get(i).getUser().getObjectId().toString(), list.get(i).getUser().getNickName().toString(), list.get(i).getUser().getHeadPortrait().getFileUrl());
                             data.add(flag);
                         }
                         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);

@@ -26,8 +26,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ls.www.petcommunity.R;
+import com.ls.www.petcommunity.adapter.FragmentRecyclerAdapter;
 import com.ls.www.petcommunity.adapter.HotpageAdapter;
 import com.ls.www.petcommunity.common.VpSwipeRefreshLayout;
+import com.ls.www.petcommunity.model.table.tb_pop_events;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -73,7 +75,7 @@ public class HotTabFragment extends Fragment {
     // 热门内容板块
     private List<Integer> data = new ArrayList<>();//必须初始化
     private RecyclerView recyclerView;
-    private Frag2RecyclerAdapter adapter;
+    private FragmentRecyclerAdapter adapter;
 
     // 文章推荐
     private ListView listView;
@@ -84,7 +86,7 @@ public class HotTabFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_tab_fragment2,container,false);
+        view = inflater.inflate(R.layout.fragment_hot_tab,container,false);
 
         findView();
         initialization();
@@ -109,9 +111,9 @@ public class HotTabFragment extends Fragment {
         mBottomLiner = (LinearLayout) view.findViewById(R.id.live_indicator);
         // 使用DisplayImageOptions.Builder()创建DisplayImageOptions
         options = new DisplayImageOptions.Builder()
-                .showImageOnLoading(R.mipmap.upload) // 设置图片下载期间显示的图片
-                .showImageForEmptyUri(R.mipmap.upload) // 设置图片Uri为空或是错误的时候显示的图片
-                .showImageOnFail(R.mipmap.upload) // 设置图片加载或解码过程中发生错误显示的图片
+                .showImageOnLoading(R.mipmap.loading) // 设置图片下载期间显示的图片
+                .showImageForEmptyUri(R.mipmap.loading) // 设置图片Uri为空或是错误的时候显示的图片
+                .showImageOnFail(R.mipmap.loading) // 设置图片加载或解码过程中发生错误显示的图片
                 .cacheInMemory(true) // 设置下载的图片是否缓存在内存中
                 .cacheOnDisk(true) // 设置下载的图片是否缓存在SD卡中
                 .build(); // 构建完成
@@ -132,12 +134,12 @@ public class HotTabFragment extends Fragment {
 
     public void initialization() {
         //寻找创建时间最近的三个活动图片
-        BmobQuery<popularActivities> query = new BmobQuery("popularActivities");
+        BmobQuery<tb_pop_events> query = new BmobQuery("popularActivities");
         query.order("-createdAt");
         query.setLimit(3);//返回三条数据；
-        query.findObjects(new FindListener<popularActivities>() {
+        query.findObjects(new FindListener<tb_pop_events>() {
             @Override
-            public void done(List<popularActivities> list, BmobException e) {
+            public void done(List<tb_pop_events> list, BmobException e) {
                 if (e == null) {
                     for (int i = 0; i < list.size(); i ++) {
                         imageUrl[i] = list.get(i).getImage().getFileUrl();
