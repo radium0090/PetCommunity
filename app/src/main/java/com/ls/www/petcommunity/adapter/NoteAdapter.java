@@ -1,7 +1,6 @@
 package com.ls.www.petcommunity.adapter;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,15 +9,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ls.www.petcommunity.R;
-import com.ls.www.petcommunity.activity.MainActivity;
+import com.ls.www.petcommunity.activity.NoteActivity;
 import com.ls.www.petcommunity.model.CollectionModel;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
-
 import java.util.List;
 
-public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHolder> {
+public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
+
 
     private List<CollectionModel> cardList;
     private OnItemClickListener mOnItemClickListener = null;
@@ -45,14 +44,14 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
         }
     }
 
-    public HomepageAdapter(List<CollectionModel> CardList) {
+    public NoteAdapter(List<CollectionModel> CardList) {
         cardList = CardList;
     }
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_topic_2, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_note_collection, parent, false);
         final ViewHolder holder = new ViewHolder(view);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,8 +59,7 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
                 //直接在adapter设置监听，点击后进行传值、页面跳转
                 int position = holder.getAdapterPosition();
                 String objectId = cardList.get(position).getId();
-//                Intent it = new Intent(v.getContext(), NoteActivity.class);
-                Intent it = new Intent(v.getContext(), MainActivity.class);
+                Intent it = new Intent(v.getContext(), NoteActivity.class);
                 it.putExtra("objectId", objectId);
                 v.getContext().startActivity(it);
             }
@@ -81,7 +79,7 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(final HomepageAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(final NoteAdapter.ViewHolder holder, final int position) {
         CollectionModel book = cardList.get(position);
         holder.id.setText(book.getId());
         holder.name.setText(book.getName());
@@ -110,6 +108,8 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
     public int getItemCount() {
         return cardList.size();
     }
+
+
 
 
 }

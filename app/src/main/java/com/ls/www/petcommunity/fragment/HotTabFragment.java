@@ -1,5 +1,6 @@
 package com.ls.www.petcommunity.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,9 +27,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ls.www.petcommunity.R;
+import com.ls.www.petcommunity.activity.ArticleActivity;
+import com.ls.www.petcommunity.activity.PopularActivity;
+import com.ls.www.petcommunity.activity.SearchActivity;
 import com.ls.www.petcommunity.adapter.FragmentRecyclerAdapter;
 import com.ls.www.petcommunity.adapter.HotpageAdapter;
 import com.ls.www.petcommunity.common.VpSwipeRefreshLayout;
+import com.ls.www.petcommunity.model.table.tb_article;
 import com.ls.www.petcommunity.model.table.tb_pop_events;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -49,6 +54,7 @@ public class HotTabFragment extends Fragment {
 
     private View view;
     private VpSwipeRefreshLayout swipeRefreshLayout;
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -134,7 +140,8 @@ public class HotTabFragment extends Fragment {
 
     public void initialization() {
         //寻找创建时间最近的三个活动图片
-        BmobQuery<tb_pop_events> query = new BmobQuery("popularActivities");
+        BmobQuery<tb_pop_events> query;
+        query = new BmobQuery("tb_pop_events");
         query.order("-createdAt");
         query.setLimit(3);//返回三条数据；
         query.findObjects(new FindListener<tb_pop_events>() {
@@ -165,28 +172,28 @@ public class HotTabFragment extends Fragment {
         data.add(R.mipmap.frag2_saying_img);
         data.add(R.mipmap.frag2_note_img);
         data.add(R.mipmap.frag2_article_img);
-        adapter = new Frag2RecyclerAdapter(data);
+        adapter = new FragmentRecyclerAdapter(data);
         recyclerView.setAdapter(adapter);
 
         // 文章推荐
         //寻找创建时间最近的三篇文章
-        BmobQuery<article> query_2 = new BmobQuery("article");
+        BmobQuery<tb_article> query_2 = new BmobQuery("tb_article");
         query_2.order("-createdAt");
         query_2.setLimit(3);//返回三条数据；
-        query_2.findObjects(new FindListener<article>() {
+        query_2.findObjects(new FindListener<tb_article>() {
             @Override
-            public void done(List<article> list, BmobException e) {
+            public void done(List<tb_article> list, BmobException e) {
                 if (e == null) {
                     if (list != null) {
-                        for (article t : list) {
+                        for (tb_article t : list) {
                             Map<String,Object> temp = new LinkedHashMap<>();
-                            temp.put("objectId", t.getObjectId().toString());
-                            temp.put("title", "『"+t.getTitle().toString());
-                            temp.put("intro", t.getIntro().toString());
+                            temp.put("objectId", t.getObjectId());
+                            temp.put("title", "『"+ t.getTitle());
+                            temp.put("intro", t.getIntro());
                             temp.put("image", t.getImage().getFileUrl());
                             data_2.add(temp);
                         }
-                        simpleAdapter = new SimpleAdapter(getApplicationContext(), data_2, R.layout.article_item, new String[] {"objectId","title","intro","image"}, new int[] {R.id.objectId, R.id.title, R.id.intro, R.id.image});
+                        simpleAdapter = new SimpleAdapter(getApplicationContext(), data_2, R.layout.item_article, new String[] {"objectId","title","intro","image"}, new int[] {R.id.objectId, R.id.title, R.id.intro, R.id.image});
                         // 在SimpleAdapter中需要一个数据源，用来存储数据的，在显示图片时我们要用HashMap<>存储一个url转为string的路径；
                         // 利用imageloader框架，对SimpleAdapter进行处理
                         simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {

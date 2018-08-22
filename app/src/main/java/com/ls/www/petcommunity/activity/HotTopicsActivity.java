@@ -20,7 +20,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 
-public class HotSayingsActivity extends AppCompatActivity {
+public class HotTopicsActivity extends AppCompatActivity {
 
     private ImageView back;
     private List<HotTopicModel> data = new ArrayList<>();//必须初始化

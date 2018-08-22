@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.ls.www.petcommunity.R;
-import com.ls.www.petcommunity.activity.HotSayingsActivity;
+import com.ls.www.petcommunity.activity.AllArticlesActivity;
+import com.ls.www.petcommunity.activity.HotNotesActivity;
+import com.ls.www.petcommunity.activity.HotTopicsActivity;
 import com.ls.www.petcommunity.activity.HotUsersActivity;
 
 import java.util.List;
@@ -50,11 +52,11 @@ public class FragmentRecyclerAdapter extends RecyclerView.Adapter<FragmentRecycl
                         v.getContext().startActivity(it1);
                         break;
                     case 1:
-                        Intent it2 = new Intent(v.getContext(), HotSayingsActivity.class);
+                        Intent it2 = new Intent(v.getContext(), HotTopicsActivity.class);
                         v.getContext().startActivity(it2);
                         break;
                     case 2:
-                        Intent it3 = new Intent(v.getContext(), HotBooksActivity.class);
+                        Intent it3 = new Intent(v.getContext(), HotNotesActivity.class);
                         v.getContext().startActivity(it3);
                         break;
                     case 3:

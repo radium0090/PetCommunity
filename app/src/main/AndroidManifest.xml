@@ -51,8 +51,77 @@
         <activity android:name=".activity.VerifyActivity"
             android:screenOrientation="portrait" />
 
+        <activity android:name=".activity.AddNoteActivity"
+            android:screenOrientation="portrait" />
 
+        <activity android:name=".activity.AddTopicActivity"
+            android:screenOrientation="portrait" />
 
+        <activity android:name=".activity.AllArticlesActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.ArticleActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.EditActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.FocusListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.FollowersListActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.HotNotesActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.LikeActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.MessageAlertActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.MessageFansActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.MessageNotesActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.MessageNotificationActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.MessageTopicsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.MyCollectionActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.MyTopicActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.NoteActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.PicturePreviewActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.PopularActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.PopularTopicActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.SearchActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.UserMessageActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.HotTopicsActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.HotUsersActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
