@@ -79,7 +79,11 @@ public class FocusListActivity extends AppCompatActivity {
                             temp.put("user_id", object.get(i).getObjectId().toString());
                             data.add(temp);
                         }
-                        simpleAdapter = new SimpleAdapter(getApplicationContext(), data, R.layout.item_peoplelist, new String[] {"image","name","user_id"}, new int[] {R.id.image, R.id.name, R.id.user_id});
+                        simpleAdapter = new SimpleAdapter(getApplicationContext(),
+                                data,
+                                R.layout.item_peoplelist,
+                                new String[] {"image","name","user_id"},
+                                new int[] {R.id.image, R.id.name, R.id.user_id});
                         // 在SimpleAdapter中需要一个数据源，用来存储数据的，在显示图片时我们要用HashMap<>存储一个url转为string的路径；
                         // 利用imageloader框架，对SimpleAdapter进行处理
                         simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
@@ -97,7 +101,7 @@ public class FocusListActivity extends AppCompatActivity {
                         listview.setAdapter(simpleAdapter);
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "关注列表查询失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "フォローリスト検索失敗", Toast.LENGTH_SHORT).show();
                 }
             }
 

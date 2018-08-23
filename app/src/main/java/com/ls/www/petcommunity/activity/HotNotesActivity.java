@@ -47,7 +47,7 @@ public class HotNotesActivity extends AppCompatActivity {
     public void initialization() {
 
         //查询收藏数排前的笔记本
-        BmobQuery<tb_collection> query = new BmobQuery("collection");
+        BmobQuery<tb_collection> query = new BmobQuery("tb_collection");
         query.order("-like_sum");
         query.findObjects(new FindListener<tb_collection>() {
             @Override
@@ -55,7 +55,7 @@ public class HotNotesActivity extends AppCompatActivity {
                 if (e == null) {
                     if (list.size() != 0) {
                         for (tb_collection t : list) {
-                            CollectionModel flag = new CollectionModel(t.getObjectId().toString(), t.getName().toString(), t.getImage().getFileUrl());
+                            CollectionModel flag = new CollectionModel(t.getObjectId(), t.getName(), t.getImage().getFileUrl());
                             data.add(flag);
                         }
                         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
@@ -64,7 +64,7 @@ public class HotNotesActivity extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "笔记本查询失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "コンテンツ検索失敗", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -46,7 +46,7 @@ public class HotTopicsActivity extends AppCompatActivity {
     public void initialization() {
 
         //查询收藏数排前的笔记本
-        BmobQuery<tb_topic> query = new BmobQuery("saying");
+        BmobQuery<tb_topic> query = new BmobQuery("tb_topic");
         query.order("-like_sum");
         query.findObjects(new FindListener<tb_topic>() {
             @Override

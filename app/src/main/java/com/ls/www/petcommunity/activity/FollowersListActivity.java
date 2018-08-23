@@ -69,16 +69,20 @@ public class FollowersListActivity extends AppCompatActivity {
             public void done(List<_User> list, BmobException e) {
                 if (e == null) {
                     if (list.size() == 0)
-                        Toast.makeText(getApplicationContext(), "当前还未有粉丝，请多发语录攒人气吧~", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "フォロワーがいません", Toast.LENGTH_SHORT).show();
                     else {
                         for (int i = 0; i < list.size(); i++) {
                             Map<String,Object> temp = new LinkedHashMap<>();
                             temp.put("image", list.get(i).getHeadPortrait().getFileUrl());
-                            temp.put("name", list.get(i).getNickName().toString());
-                            temp.put("user_id", list.get(i).getObjectId().toString());
+                            temp.put("name", list.get(i).getNickName());
+                            temp.put("user_id", list.get(i).getObjectId());
                             data.add(temp);
                         }
-                        simpleAdapter = new SimpleAdapter(getApplicationContext(), data, R.layout.item_peoplelist, new String[] {"image","name","user_id"}, new int[] {R.id.image, R.id.name, R.id.user_id});
+                        simpleAdapter = new SimpleAdapter(getApplicationContext(),
+                                data,
+                                R.layout.item_peoplelist,
+                                new String[] {"image","name","user_id"},
+                                new int[] {R.id.image, R.id.name, R.id.user_id});
                         // 在SimpleAdapter中需要一个数据源，用来存储数据的，在显示图片时我们要用HashMap<>存储一个url转为string的路径；
                         // 利用imageloader框架，对SimpleAdapter进行处理
                         simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {

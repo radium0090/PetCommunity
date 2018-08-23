@@ -47,7 +47,7 @@ public class HotUsersActivity extends AppCompatActivity {
     public void initialization() {
 
         //查询粉丝量靠前的用户，先查询他们的user_followers
-        BmobQuery<tb_user_followers> query = new BmobQuery("user_followers");
+        BmobQuery<tb_user_followers> query = new BmobQuery("tb_user_followers");
         query.include("user");
         query.order("-follower_sum");
         query.findObjects(new FindListener<tb_user_followers>() {

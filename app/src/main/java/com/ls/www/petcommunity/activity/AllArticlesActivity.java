@@ -21,6 +21,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -61,7 +62,7 @@ public class AllArticlesActivity extends AppCompatActivity {
 
     public void initialization() {
         //寻找所有文章
-        BmobQuery<tb_article> query = new BmobQuery("article");
+        BmobQuery<tb_article> query = new BmobQuery("tb_article");
         query.order("-createdAt");
         query.findObjects(new FindListener<tb_article>() {
             @Override
@@ -70,13 +71,17 @@ public class AllArticlesActivity extends AppCompatActivity {
                     if (list != null) {
                         for (tb_article t : list) {
                             Map<String,Object> temp = new LinkedHashMap<>();
-                            temp.put("objectId", t.getObjectId().toString());
-                            temp.put("title", "『"+t.getTitle().toString());
-                            temp.put("intro", t.getIntro().toString());
+                            temp.put("objectId", t.getObjectId());
+                            temp.put("title", "『"+ t.getTitle());
+                            temp.put("intro", t.getIntro());
                             temp.put("image", t.getImage().getFileUrl());
                             data.add(temp);
                         }
-                        simpleAdapter = new SimpleAdapter(getApplicationContext(), data, R.layout.item_article, new String[] {"objectId","title","intro","image"}, new int[] {R.id.objectId, R.id.title, R.id.intro, R.id.image});
+                        simpleAdapter = new SimpleAdapter(getApplicationContext(),
+                                data,
+                                R.layout.item_article,
+                                new String[] {"objectId","title","intro","image"},
+                                new int[] {R.id.objectId, R.id.title, R.id.intro, R.id.image});
                         // 在SimpleAdapter中需要一个数据源，用来存储数据的，在显示图片时我们要用HashMap<>存储一个url转为string的路径；
                         // 利用imageloader框架，对SimpleAdapter进行处理
                         simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
@@ -95,7 +100,7 @@ public class AllArticlesActivity extends AppCompatActivity {
                     }
 
                 } else {
-                    Toast.makeText(getApplicationContext(), "查询失败"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "検索失敗"+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });

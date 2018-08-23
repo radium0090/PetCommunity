@@ -63,7 +63,7 @@ public class ArticleActivity extends AppCompatActivity {
                     intro.setText(object.getIntro());
                     content.setText(object.getContent());
                 }else{
-                    Toast.makeText(getApplicationContext(), "文章查询失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "コンテンツ検索失敗", Toast.LENGTH_SHORT).show();
                 }
             }
 

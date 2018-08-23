@@ -76,7 +76,11 @@ public class AddTopicActivity extends AppCompatActivity {
                 Saying_author = Saying_author_edittext.getText().toString();
                 Saying_topic = Saying_topic_edittext.getText().toString();
                 Saying_content = Saying_content_edittext.getText().toString();
-                if (Saying_provenance.equals("") && Saying_author.equals("") && Saying_topic.equals("") && Saying_content.equals("") && path == null)
+                if (Saying_provenance.equals("")
+                        && Saying_author.equals("")
+                        && Saying_topic.equals("")
+                        && Saying_content.equals("")
+                        && path == null)
                     finish();
                 else {
                     createDialog();
@@ -99,7 +103,7 @@ public class AddTopicActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Saying_content = Saying_content_edittext.getText().toString();
                 if (Saying_content.equals(""))
-                    Toast.makeText(getApplicationContext(), "内容为空，无法发布", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "内容未入力、公開出来ません", Toast.LENGTH_SHORT).show();
                 else
                     upLoad();//发表语录帖子
             }
@@ -109,7 +113,7 @@ public class AddTopicActivity extends AppCompatActivity {
     public void upLoad() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(true);
-        progressDialog.setMessage("正在发布中...");
+        progressDialog.setMessage("公開中...");
         progressDialog.show();
         _User user = BmobUser.getCurrentUser(_User.class);
         Saying_provenance = Saying_provenance_edittext.getText().toString();
@@ -137,18 +141,18 @@ public class AddTopicActivity extends AppCompatActivity {
                             @Override
                             public void done(String objectId, BmobException e) {
                                 if(e==null){
-                                    Toast.makeText(getApplicationContext(), "发布成功", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "公開完了", Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                     finish();
                                     //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                                 }else{
-                                    Toast.makeText(getApplicationContext(), "发布失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "公開失敗", Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 }
                             }
                         });
                     } else {
-                        Toast.makeText(getApplication(), "发布失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplication(), "公開失敗", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 }
@@ -158,12 +162,12 @@ public class AddTopicActivity extends AppCompatActivity {
                 @Override
                 public void done(String objectId, BmobException e) {
                     if(e==null){
-                        Toast.makeText(getApplicationContext(), "发布成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "公開完了", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                         finish();
                         overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }else{
-                        Toast.makeText(getApplicationContext(), "发布失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "公開失敗", Toast.LENGTH_SHORT).show();
                         progressDialog.dismiss();
                     }
                 }
@@ -174,14 +178,14 @@ public class AddTopicActivity extends AppCompatActivity {
 
     public void createDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("内容无法保存，确定离开？")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        alertDialog.setMessage("保存されていません、離れますか？")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         finish();
                     }
                 })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
@@ -199,7 +203,12 @@ public class AddTopicActivity extends AppCompatActivity {
                         Uri selectdeImage = data.getData();
                         String[] filePathColumn = {MediaStore.Images.Media.DATA};
                         //从系统表中查询指定uri对应的照片
-                        Cursor cursor = getContentResolver().query(selectdeImage, filePathColumn, null, null, null);
+                        Cursor cursor = getContentResolver().query(selectdeImage,
+                                filePathColumn,
+                                null,
+                                null,
+                                null
+                        );
                         cursor.moveToFirst();
                         int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
                         path = cursor.getString(columnIndex);

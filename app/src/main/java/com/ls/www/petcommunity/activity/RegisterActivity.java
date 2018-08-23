@@ -227,14 +227,20 @@ public class RegisterActivity extends AppCompatActivity {
         progressDialog.show();
         //img_path = getImagePath(uri, null);
         //Toast.makeText(getApplication(), img_path.toString(), Toast.LENGTH_LONG).show();
-        final BmobFile file = new BmobFile(new File(uri));
+        Uri mUri = Uri.parse((String) uri);
+        System.out.println("aaaaaaaaa" + mUri.toString());
+        System.out.println("aaaaaaaaarrrrrrrrrr" + mUri);
+        final BmobFile file = new BmobFile(new File(getRealFilePath(this, mUri)));
+        System.out.println("============= 111" + file);
         file.uploadblock(new UploadFileListener() {
             @Override
             public void done(BmobException e) {
+                System.out.println("============= 555" + e);
                 if (e == null) {
                     //Toast.makeText(getApplication(), "图片上传成功", Toast.LENGTH_SHORT).show();
                     // 图片上传成功后注册用户
                     _User user = new _User();
+                    System.out.println("============= 222" + file);
                     user.setHeadPortrait(file);
                     user.setNickName(nickNameText);
                     user.setEmail(loginEmailText);
@@ -303,15 +309,15 @@ public class RegisterActivity extends AppCompatActivity {
                                                             @Override
                                                             public void done(BmobException e) {
                                                                 if (e == null) {
-                                                                    //Toast.makeText(getApplication(), "关联成功", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(getApplication(), "关联成功", Toast.LENGTH_SHORT).show();
                                                                 } else {
-                                                                    //Toast.makeText(getApplication(), "关联失败", Toast.LENGTH_SHORT).show();
+                                                                    Toast.makeText(getApplication(), "关联失败", Toast.LENGTH_SHORT).show();
                                                                 }
                                                             }
                                                         });
-                                                        //Toast.makeText(getApplication(), "创建成功", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getApplication(), "创建成功", Toast.LENGTH_SHORT).show();
                                                     } else {
-                                                        //Toast.makeText(getApplication(), "创建失败", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getApplication(), "创建失败", Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
                                             });
@@ -323,7 +329,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             BmobRelation relation = new BmobRelation();
                                             relation.add(office);
                                             s.setFocusId(relation);
-                                            s.increment("focusId_sum");//关注人数自增1
+                                            s.increment("focusIdSum");//关注人数自增1
                                             s.update(new UpdateListener() {
                                                 @Override
                                                 public void done(BmobException e) {
@@ -340,7 +346,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             relation_2.add(s);
 
                                             BmobQuery<tb_user_followers> query = new BmobQuery<tb_user_followers>();
-                                            query.addWhereEqualTo("user_id", "e0c92a7159");
+                                            query.addWhereEqualTo("userId", "e0c92a7159");
                                             query.findObjects(new FindListener<tb_user_followers>() {
                                                 @Override
                                                 public void done(List<tb_user_followers> list, BmobException e) {
@@ -348,14 +354,14 @@ public class RegisterActivity extends AppCompatActivity {
                                                         if (list.size() == 1) {
                                                             tb_user_followers the_user_followers = new tb_user_followers();
                                                             the_user_followers.setFollowerId(relation_2);
-                                                            the_user_followers.increment("follower_sum");
-                                                            the_user_followers.increment("message_fans_sum");
-                                                            the_user_followers.increment("message_fans_read",0);
-                                                            the_user_followers.increment("notification_read",0);
-                                                            the_user_followers.increment("message_topics_read",0);
-                                                            the_user_followers.increment("message_topics_sum",0);
-                                                            the_user_followers.increment("message_notes_read",0);
-                                                            the_user_followers.increment("message_notes_sum",0);
+                                                            the_user_followers.increment("followerSum");
+                                                            the_user_followers.increment("messageFansSum");
+                                                            the_user_followers.increment("messageFansRead",0);
+                                                            the_user_followers.increment("notificationRead",0);
+                                                            the_user_followers.increment("messageTopicsRead",0);
+                                                            the_user_followers.increment("messageTopicsSum",0);
+                                                            the_user_followers.increment("messageNotesRead",0);
+                                                            the_user_followers.increment("messageNotesSum",0);
                                                             the_user_followers.update(list.get(0).getObjectId(), new UpdateListener() {
                                                                 @Override
                                                                 public void done(BmobException ee) {

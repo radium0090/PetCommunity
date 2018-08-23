@@ -128,9 +128,9 @@ public class AddNoteActivity extends AppCompatActivity {
                 name = name_edittext.getText().toString();
                 intro = intro_edittext.getText().toString();
                 if (name.equals(""))
-                    Toast.makeText(getApplicationContext(), "笔记本标题不能为空哦", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "タイトルを入力して下さい", Toast.LENGTH_SHORT).show();
                 else if (img_uri == null)
-                    Toast.makeText(getApplicationContext(), "请上传笔记本封面图片", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "カバーイメージをアップロードしてください", Toast.LENGTH_SHORT).show();
                 else
                     uploadImage_then_create(img_uri);//发表语录帖子
             }
@@ -198,7 +198,7 @@ public class AddNoteActivity extends AppCompatActivity {
     public void uploadImage_then_create(String uri) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(true);
-        progressDialog.setMessage("正在创建中...");
+        progressDialog.setMessage("作成中...");
         progressDialog.show();
         //img_path = getImagePath(uri, null);
         //Toast.makeText(getApplication(), img_path.toString(), Toast.LENGTH_LONG).show();
@@ -229,7 +229,7 @@ public class AddNoteActivity extends AppCompatActivity {
                                     public void done(BmobException e) {
                                         if (e == null) {
                                             //Toast.makeText(getApplication(), "关联成功", Toast.LENGTH_SHORT).show();
-                                            Toast.makeText(getApplicationContext(), "<"+name+">笔记本创建成功", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(), "<"+name+">作成完了", Toast.LENGTH_SHORT).show();
                                             progressDialog.dismiss();
                                             Intent i = new Intent();
                                             setResult(0, i);
@@ -247,7 +247,7 @@ public class AddNoteActivity extends AppCompatActivity {
                         }
                     });
                 } else {
-                    Toast.makeText(getApplication(), "图片上传失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "イメージアップロードエラー", Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
                 }
             }
@@ -256,14 +256,14 @@ public class AddNoteActivity extends AppCompatActivity {
 
     public void createDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("内容无法保存，确定离开？")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        alertDialog.setMessage("まだ保存されていません，はなれますか？")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         finish();
                     }
                 })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }

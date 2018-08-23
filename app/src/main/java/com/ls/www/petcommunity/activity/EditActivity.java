@@ -102,11 +102,11 @@ public class EditActivity extends AppCompatActivity {
             @Override
             public void done(tb_collection object, BmobException e) {
                 if(e==null){
-                    name_edittext.setText(object.getName().toString());
-                    intro_edittext.setText(object.getIntroduction().toString());
+                    name_edittext.setText(object.getName());
+                    intro_edittext.setText(object.getIntroduction());
                     ImageLoader.getInstance().displayImage(object.getImage().getFileUrl(), image);
                 }else{
-                    Toast.makeText(getApplicationContext(), "笔记本查询失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "コンテンツ検索失敗", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -148,7 +148,7 @@ public class EditActivity extends AppCompatActivity {
                 name = name_edittext.getText().toString();
                 intro = intro_edittext.getText().toString();
                 if (name.equals(""))
-                    Toast.makeText(getApplicationContext(), "笔记本标题不能为空哦", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "タイトルを入力して下さい", Toast.LENGTH_SHORT).show();
                 else
                     uploadImage_then_create(img_uri);//发表语录帖子
             }
@@ -232,18 +232,18 @@ public class EditActivity extends AppCompatActivity {
                             @Override
                             public void done(BmobException e) {
                                 if(e==null){
-                                    Toast.makeText(getApplicationContext(), "更改成功", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "変更完了", Toast.LENGTH_SHORT).show();
                                     Intent i = new Intent();
                                     setResult(0, i);
                                     finish();
                                     //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                                 }else{
-                                    Toast.makeText(getApplicationContext(), "更改失败", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "変更失敗", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
                     } else {
-                        Toast.makeText(getApplication(), "更改失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplication(), "変更失敗", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -255,11 +255,11 @@ public class EditActivity extends AppCompatActivity {
                 @Override
                 public void done(BmobException e) {
                     if(e==null){
-                        Toast.makeText(getApplicationContext(), "更改成功", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "変更完了", Toast.LENGTH_SHORT).show();
                         finish();
                         //overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
                     }else{
-                        Toast.makeText(getApplicationContext(), "更改失败", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "変更失敗", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
