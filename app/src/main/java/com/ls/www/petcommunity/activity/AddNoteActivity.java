@@ -202,6 +202,7 @@ public class AddNoteActivity extends AppCompatActivity {
         progressDialog.show();
         //img_path = getImagePath(uri, null);
         //Toast.makeText(getApplication(), img_path.toString(), Toast.LENGTH_LONG).show();
+        // TODO: String uri to URI, URI to File Path
         final BmobFile file = new BmobFile(new File(uri));
         file.uploadblock(new UploadFileListener() {
             @Override

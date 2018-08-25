@@ -88,7 +88,7 @@ public class LikeActivity extends AppCompatActivity {
 
         // 查询收藏的语录
         BmobQuery<tb_topic> query = new BmobQuery("tb_topic");
-        query.addWhereRelatedTo("focusSaying", new BmobPointer(user));
+        query.addWhereRelatedTo("focusTopic", new BmobPointer(user));
         query.include("userId");
         query.order("-createdAt");
         query.findObjects(new FindListener<tb_topic>() {
@@ -98,24 +98,28 @@ public class LikeActivity extends AppCompatActivity {
                     if (list.size() != 0) {
                         for (tb_topic t : list) {
                             Map<String,Object> temp = new LinkedHashMap<>();
-                            temp.put("saying_id", t.getObjectId().toString());
-                            temp.put("user_name", t.getUserId().getNickName().toString());
+                            temp.put("topicId", t.getObjectId());
+                            temp.put("userName", t.getUserId().getNickName());
                             // 例子：对于返回的时间值“2018-1-31 18:39”，只取空格前的年月日
-                            temp.put("create_time", t.getCreatedAt().toString().split(" ")[0]);
-                            temp.put("saying_content", t.getContent().toString());
+                            temp.put("createTime", t.getCreatedAt().split(" ")[0]);
+                            temp.put("topicContent", t.getContent());
                             if (t.getImage() != null) {
                                 BmobFile img = t.getImage();
                                 String img_url = img.getFileUrl();
-                                temp.put("saying_image", img_url);
+                                temp.put("topicImage", img_url);
                             } else {
-                                temp.put("saying_image", "no_image");
+                                temp.put("topicImage", "noImage");
                             }
                             BmobFile head_img = t.getUserId().getHeadPortrait();
                             String head_img_url = head_img.getFileUrl();
-                            temp.put("user_image", head_img_url);
+                            temp.put("userImage", head_img_url);
                             data.add(temp);
                         }
-                        simpleAdapter = new SimpleAdapter(getApplicationContext(), data, R.layout.item_topic, new String[] {"saying_id","user_name","saying_content","create_time","saying_image","user_image"}, new int[] {R.id.saying_id, R.id.user_name, R.id.saying_content, R.id.create_time, R.id.saying_image, R.id.user_image});
+                        simpleAdapter = new SimpleAdapter(getApplicationContext(),
+                                data,
+                                R.layout.item_topic,
+                                new String[] {"topicId","userName","topicContent","createTime","topicImage","userImage"},
+                                new int[] {R.id.saying_id, R.id.user_name, R.id.saying_content, R.id.create_time, R.id.saying_image, R.id.user_image});
                         // 在SimpleAdapter中需要一个数据源，用来存储数据的，在显示图片时我们要用HashMap<>存储一个url转为string的路径；
                         // 利用imageloader框架，对SimpleAdapter进行处理
                         simpleAdapter.setViewBinder(new SimpleAdapter.ViewBinder() {
@@ -124,7 +128,7 @@ public class LikeActivity extends AppCompatActivity {
                                 //判断是否为我们要处理的对象
                                 if(view instanceof ImageView && data instanceof String){
                                     ImageView iv = (ImageView) view;
-                                    if (data.equals("no_image"))
+                                    if (data.equals("noImage"))
                                         iv.setVisibility(View.GONE);
                                     else {
                                         iv.setVisibility(View.VISIBLE);
@@ -147,7 +151,7 @@ public class LikeActivity extends AppCompatActivity {
 
         // 查询收藏的笔记本
         BmobQuery<tb_collection> query2 = new BmobQuery("tb_collection");
-        query2.addWhereRelatedTo("focusBook", new BmobPointer(user));
+        query2.addWhereRelatedTo("focusNote", new BmobPointer(user));
         query2.order("createdAt");
         query2.findObjects(new FindListener<tb_collection>() {
             @Override
@@ -156,7 +160,7 @@ public class LikeActivity extends AppCompatActivity {
                     bookSum = list.size();
                     if (list.size() != 0) {
                         for (tb_collection t : list) {
-                            CollectionModel flag = new CollectionModel(t.getObjectId().toString(), t.getName().toString(), t.getImage().getFileUrl());
+                            CollectionModel flag = new CollectionModel(t.getObjectId(), t.getName(), t.getImage().getFileUrl());
                             data_2.add(flag);
                         }
                         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);

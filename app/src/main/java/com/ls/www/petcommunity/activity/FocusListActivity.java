@@ -69,14 +69,14 @@ public class FocusListActivity extends AppCompatActivity {
             public void done(List<_User> object, BmobException e) {
                 if (e == null) {
                     if (object.size() == 0) {
-                        Toast.makeText(getApplicationContext(), "还没关注任何人哦", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), "まだフォローしておりません", Toast.LENGTH_SHORT).show();
                     }
                     else {
                         for (int i = 0; i < object.size(); i++) {
                             Map<String,Object> temp = new LinkedHashMap<>();
                             temp.put("image", object.get(i).getHeadPortrait().getFileUrl());
-                            temp.put("name", object.get(i).getNickName().toString());
-                            temp.put("user_id", object.get(i).getObjectId().toString());
+                            temp.put("name", object.get(i).getNickName());
+                            temp.put("user_id", object.get(i).getObjectId());
                             data.add(temp);
                         }
                         simpleAdapter = new SimpleAdapter(getApplicationContext(),

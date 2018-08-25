@@ -57,7 +57,7 @@ public class MessageFansActivity extends AppCompatActivity {
         BmobQuery<tb_message_fans> query = new BmobQuery<tb_message_fans>();
         query.order("-createdAt");
         query.include("initiator");
-        query.addWhereEqualTo("acceptor_id", current_user.getObjectId());
+        query.addWhereEqualTo("acceptorId", current_user.getObjectId());
         query.findObjects(new FindListener<tb_message_fans>() {
             @Override
             public void done(List<tb_message_fans> list, BmobException e) {
@@ -68,9 +68,9 @@ public class MessageFansActivity extends AppCompatActivity {
                         for (int i = 0; i < list.size(); i++) {
                             Map<String,Object> temp = new LinkedHashMap<>();
                             temp.put("image", list.get(i).getInitiator().getHeadPortrait().getFileUrl());
-                            temp.put("name", list.get(i).getInitiator().getNickName().toString());
-                            temp.put("user_id", list.get(i).getInitiator().getObjectId().toString());
-                            temp.put("time", list.get(i).getCreatedAt().toString().split(" ")[0]);
+                            temp.put("name", list.get(i).getInitiator().getNickName());
+                            temp.put("userId", list.get(i).getInitiator().getObjectId());
+                            temp.put("time", list.get(i).getCreatedAt().split(" ")[0]);
                             data.add(temp);
                         }
                         simpleAdapter = new SimpleAdapter(getApplicationContext(), data, R.layout.item_message_fans, new String[] {"image","name","user_id","time"}, new int[] {R.id.image, R.id.name, R.id.user_id, R.id.time});
@@ -97,16 +97,16 @@ public class MessageFansActivity extends AppCompatActivity {
         });
 
         BmobQuery<tb_user_followers> query2 = new BmobQuery<tb_user_followers>();
-        query2.addWhereEqualTo("user_id", current_user.getObjectId());
+        query2.addWhereEqualTo("userId", current_user.getObjectId());
         query2.findObjects(new FindListener<tb_user_followers>() {
             @Override
             public void done(List<tb_user_followers> list, BmobException e) {
                 if (e == null) {
-                    if (list.get(0).getMessageFansSum() != list.get(0).getMessageFansRead()) {
+                    if (!list.get(0).getMessageFansSum().equals(list.get(0).getMessageFansRead())) {
                         list.get(0).setMessageFansRead(list.get(0).getMessageFansSum());
-                        list.get(0).increment("notification_read",0);
-                        list.get(0).increment("follower_sum",0);
-                        list.get(0).increment("message_fans_sum",0);
+                        list.get(0).increment("notificationRead",0);
+                        list.get(0).increment("followerSum",0);
+                        list.get(0).increment("messageFansSum",0);
                         list.get(0).update(new UpdateListener() {
                             @Override
                             public void done(BmobException e) {

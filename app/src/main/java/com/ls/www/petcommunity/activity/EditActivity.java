@@ -218,6 +218,7 @@ public class EditActivity extends AppCompatActivity {
         intro = intro_edittext.getText().toString();
         // 查看需不需要上传图片
         if (img_uri != null) {
+            // TODO: String to URI, URI to file path
             image_file = new BmobFile(new File(img_uri));
             //要先上传图片，之后才能将图片加载到新建数据列里
             image_file.uploadblock(new UploadFileListener() {
@@ -268,14 +269,14 @@ public class EditActivity extends AppCompatActivity {
 
     public void createDialog() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-        alertDialog.setMessage("内容无法保存，确定离开？")
-                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+        alertDialog.setMessage("まだ保存されておりません、離れますか？")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         finish();
                     }
                 })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                .setNegativeButton("キャンセル", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }

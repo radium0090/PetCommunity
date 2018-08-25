@@ -57,7 +57,9 @@ public class HotUsersActivity extends AppCompatActivity {
                     ids = new String[list.size()];
                     if (list.size() != 0) {
                         for (int i = 0; i < list.size(); i++) {
-                            CollectionModel flag = new CollectionModel(list.get(i).getUser().getObjectId().toString(), list.get(i).getUser().getNickName().toString(), list.get(i).getUser().getHeadPortrait().getFileUrl());
+                            CollectionModel flag = new CollectionModel(list.get(i).getUser().getObjectId(),
+                                    list.get(i).getUser().getNickName(),
+                                    list.get(i).getUser().getHeadPortrait().getFileUrl());
                             data.add(flag);
                         }
                         GridLayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 3);
@@ -66,7 +68,7 @@ public class HotUsersActivity extends AppCompatActivity {
                         recyclerView.setAdapter(adapter);
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "用户查询失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "ユーザー検索失敗", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -78,24 +78,24 @@ public class MessageAlertActivity extends AppCompatActivity {
     public void initialization_2() {
         //查询是否有未读消息
         BmobQuery<tb_user_followers> query = new BmobQuery<tb_user_followers>();
-        query.addWhereEqualTo("user_id", current_user.getObjectId());
+        query.addWhereEqualTo("userId", current_user.getObjectId());
         query.findObjects(new FindListener<tb_user_followers>() {
             @Override
             public void done(List<tb_user_followers> list, BmobException e) {
                 if (e == null) {
-                    if (list.get(0).getMessageFansSum() != list.get(0).getMessageFansRead()) {
+                    if (!list.get(0).getMessageFansSum().equals(list.get(0).getMessageFansRead())) {
                         //Toast.makeText(getApplicationContext(), "“新粉丝”有未读消息", Toast.LENGTH_SHORT).show();
                         icon_1 = R.drawable.ic_message;
                     }
-                    if (list.get(0).getMessageTopicsSum() != list.get(0).getMessageTopicsRead()) {
+                    if (!list.get(0).getMessageTopicsSum().equals(list.get(0).getMessageTopicsRead())) {
                         //Toast.makeText(getApplicationContext(), "“语录喜欢”有未读消息", Toast.LENGTH_SHORT).show();
                         icon_2 = R.drawable.ic_message;
                     }
-                    if (list.get(0).getMessageNotesSum() != list.get(0).getMessageNotesRead()) {
+                    if (!list.get(0).getMessageNotesSum().equals(list.get(0).getMessageNotesRead())) {
                         //Toast.makeText(getApplicationContext(), "“笔记喜欢”有未读消息", Toast.LENGTH_SHORT).show();
                         icon_3 = R.drawable.ic_message;
                     }
-                    if (list.get(0).getNotificationRead() != notification_sum) {
+                    if (!list.get(0).getNotificationRead().equals(notification_sum)) {
                         //Toast.makeText(getApplicationContext(), "“系统通知”有未读消息", Toast.LENGTH_SHORT).show();
                         icon_4 = R.drawable.ic_message;
                     }
@@ -120,7 +120,11 @@ public class MessageAlertActivity extends AppCompatActivity {
             temp.put("icon", icons[i]);
             data.add(temp);
         }
-        simpleAdapter = new SimpleAdapter(getApplicationContext(), data, R.layout.item_message_alert, new String[] {"image","message","icon"}, new int[] {R.id.image, R.id.message, R.id.icon});
+        simpleAdapter = new SimpleAdapter(getApplicationContext(),
+                data,
+                R.layout.item_message_alert,
+                new String[] {"image","message","icon"},
+                new int[] {R.id.image, R.id.message, R.id.icon});
         listView.setAdapter(simpleAdapter);
     }
 
@@ -150,7 +154,7 @@ public class MessageAlertActivity extends AppCompatActivity {
                         break;
                     case 3:
                         Intent it_3 = new Intent(MessageAlertActivity.this, MessageNotificationActivity.class);
-                        it_3.putExtra("notification_sum", notification_sum+"");
+                        it_3.putExtra("notification_sum", notification_sum + "");
                         startActivityForResult(it_3, 3);
                         break;
                     default:

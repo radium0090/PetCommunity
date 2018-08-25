@@ -127,18 +127,16 @@ public class RegisterActivity extends AppCompatActivity {
                 passwordText = password.getText().toString();
                 psw_againText = psw_again.getText().toString();
                 if (nickNameText.equals("") || loginEmailText.equals("") || passwordText.equals("") || psw_againText.equals(""))
-                    Toast.makeText(getApplication(), "请填写完整", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "ユーザー情報を入力してください", Toast.LENGTH_SHORT).show();
                 else if (img_uri.equals(""))
-                    Toast.makeText(getApplication(), "请上传你喜欢的头像", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "ユーザーアイコンをアップロードして下さい", Toast.LENGTH_SHORT).show();
                 else if (!passwordText.equals(psw_againText))
-                    Toast.makeText(getApplication(), "请注意：您的两次密码填写不一致", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "パスワードが一致しません", Toast.LENGTH_SHORT).show();
                 else {
-                    System.out.println("img uri is : " + img_uri);
                     uploadImage_then_signUp(img_uri);
                 }
             }
         });
-
     }
 
     public void createDialog() {
@@ -223,24 +221,19 @@ public class RegisterActivity extends AppCompatActivity {
     public void uploadImage_then_signUp(String uri) {
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(true);
-        progressDialog.setMessage("正在注册中...");
+        progressDialog.setMessage("アカウント作成中...");
         progressDialog.show();
         //img_path = getImagePath(uri, null);
         //Toast.makeText(getApplication(), img_path.toString(), Toast.LENGTH_LONG).show();
         Uri mUri = Uri.parse((String) uri);
-        System.out.println("aaaaaaaaa" + mUri.toString());
-        System.out.println("aaaaaaaaarrrrrrrrrr" + mUri);
         final BmobFile file = new BmobFile(new File(getRealFilePath(this, mUri)));
-        System.out.println("============= 111" + file);
         file.uploadblock(new UploadFileListener() {
             @Override
             public void done(BmobException e) {
-                System.out.println("============= 555" + e);
                 if (e == null) {
                     //Toast.makeText(getApplication(), "图片上传成功", Toast.LENGTH_SHORT).show();
                     // 图片上传成功后注册用户
                     _User user = new _User();
-                    System.out.println("============= 222" + file);
                     user.setHeadPortrait(file);
                     user.setNickName(nickNameText);
                     user.setEmail(loginEmailText);
@@ -291,8 +284,8 @@ public class RegisterActivity extends AppCompatActivity {
                                             // 新建默认笔记本
                                             tb_collection this_collection = new tb_collection();
                                             this_collection.setUserOnlyId(s.getObjectId());
-                                            this_collection.setName("默认笔记本");
-                                            this_collection.setIntroduction("将你喜欢的语录添加至笔记本之中~");
+                                            this_collection.setName("ノート");
+                                            this_collection.setIntroduction("好みな投稿をアーカイブ");
                                             this_collection.setImage(file);
                                             this_collection.setPublicOrNot(true);
                                             this_collection.save(new SaveListener<String>() {
@@ -404,22 +397,22 @@ public class RegisterActivity extends AppCompatActivity {
                                 progressDialog.dismiss();
                             } else {
                                 if (e.getErrorCode() == 202 || e.getErrorCode() == 203) {
-                                    Toast.makeText(getApplication(), "抱歉，该邮箱已被注册", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplication(), "このメールアドレスは登録済です", Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 }
                                 else if (e.getErrorCode() == 301) {
-                                    Toast.makeText(getApplication(), "邮箱地址必须填写规范", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplication(), "メールアドレスを入力てください", Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 }
                                 else {
-                                    Toast.makeText(getApplication(), "注册失败：" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplication(), "アカウント作成失敗：" + e.getMessage(), Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 }
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(getApplication(), "图片上传失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplication(), "アイコン画像アップロードエラー", Toast.LENGTH_SHORT).show();
                     System.out.println("upload status :" + e);
                     progressDialog.dismiss();
                 }

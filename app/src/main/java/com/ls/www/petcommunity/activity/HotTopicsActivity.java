@@ -57,7 +57,7 @@ public class HotTopicsActivity extends AppCompatActivity {
                             String img_url = "no_image";
                             if (t.getImage() != null)
                                 img_url = t.getImage().getFileUrl();
-                            HotTopicModel flag = new HotTopicModel(t.getObjectId().toString(), t.getContent().toString(), img_url);
+                            HotTopicModel flag = new HotTopicModel(t.getObjectId(), t.getContent(), img_url);
                             data.add(flag);
                         }
                         StaggeredGridLayoutManager layoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
