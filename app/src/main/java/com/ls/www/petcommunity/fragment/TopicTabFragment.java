@@ -1,5 +1,6 @@
 package com.ls.www.petcommunity.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,11 +49,12 @@ public class TopicTabFragment extends Fragment {
     private String[] focusIds;
 
     private ListView listView;
-    private List<Map<String,Object>> data = new ArrayList<>();
+    private List<Map<String, Object>> data = new ArrayList<>();
     private SimpleAdapter simpleAdapter;
 
     private DisplayImageOptions options; // 设置图片显示相关参数
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -69,14 +71,13 @@ public class TopicTabFragment extends Fragment {
         initData();
 
         //显示listView
-        search_focus_ids();
-
+        searchFocusIds();
         clickEvents();
 
         return view;
     }
 
-    public void search_focus_ids() {
+    public void searchFocusIds() {
 
         // 查询关注的所有用户，多对多关联，因此查询的是用户表
         BmobQuery<_User> query = new BmobQuery<_User>();
@@ -94,14 +95,14 @@ public class TopicTabFragment extends Fragment {
         mainQuery.or(queries);
         mainQuery.findObjects(new FindListener<_User>() {
             @Override
-            public void done(List<_User> object,BmobException e) {
+            public void done(List<_User> object, BmobException e) {
                 if (e == null) {
                     if (object.size() == 0)
                         Toast.makeText(getApplicationContext(), "你还没关注任何人哦", Toast.LENGTH_SHORT).show();
                     else {
                         focusIds = new String[object.size()];
                         for (int i = 0; i < object.size(); i++) {
-                            focusIds[i] = object.get(i).getObjectId().toString();
+                            focusIds[i] = object.get(i).getObjectId();
                             //Toast.makeText(getApplicationContext(), focus_ids[i], Toast.LENGTH_SHORT).show();
                         }
                         initialization();
@@ -130,7 +131,7 @@ public class TopicTabFragment extends Fragment {
     }
 
     public void initialization() {
-        BmobQuery<tb_topic> query = new BmobQuery("saying");
+        BmobQuery<tb_topic> query = new BmobQuery("tb_topic");
         query.addWhereContainedIn("userOnlyId", Arrays.asList(focusIds));  // 查询当前用户的所有语录
         query.include("userId");
         query.order("-createdAt");
@@ -141,7 +142,7 @@ public class TopicTabFragment extends Fragment {
 
                     if (list != null) {
                         for (tb_topic t : list) {
-                            Map<String,Object> temp = new LinkedHashMap<>();
+                            Map<String, Object> temp = new LinkedHashMap<>();
                             temp.put("saying_id", t.getObjectId());
                             temp.put("user_name", t.getUserId().getNickName());
                             // 例子：对于返回的时间值“2018-1-31 18:39”，只取空格前的年月日
@@ -223,7 +224,7 @@ public class TopicTabFragment extends Fragment {
                                 public void run() {
                                     //更新数据
                                     data.clear();
-                                    search_focus_ids();
+                                    searchFocusIds();
                                     //停止
                                     swipeRefreshLayout.setRefreshing(false);
                                 }

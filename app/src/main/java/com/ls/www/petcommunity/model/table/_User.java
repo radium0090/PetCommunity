@@ -1,7 +1,5 @@
 package com.ls.www.petcommunity.model.table;
 
-import com.ls.www.petcommunity.model.table.tb_user_followers;
-
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.datatype.BmobFile;
 import cn.bmob.v3.datatype.BmobRelation;
@@ -13,9 +11,6 @@ public class _User extends BmobUser {
     private String nickName;
     private String briefIntro;
     private BmobRelation focusId;
-
-
-
     private BmobRelation focusNote;
     private BmobRelation focusTopic;
     private Integer focusIdSum = 0;

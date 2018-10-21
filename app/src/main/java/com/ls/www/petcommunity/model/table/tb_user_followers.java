@@ -14,9 +14,6 @@ public class tb_user_followers extends BmobObject {
     private Integer messageFansRead = 0;
     private Integer messageTopicsSum = 0;
     private Integer messageTopicsRead = 0;
-
-
-
     private Integer messageNotesSum = 0;
     private Integer messageNotesRead = 0;
     private Integer notificationRead = 0;

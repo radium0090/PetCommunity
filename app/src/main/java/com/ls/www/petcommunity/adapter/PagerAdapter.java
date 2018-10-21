@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.ls.www.petcommunity.fragment.HotTabFragment;
+import com.ls.www.petcommunity.fragment.MyTabFragment;
 import com.ls.www.petcommunity.fragment.TopicTabFragment;
 
 public class PagerAdapter extends FragmentStatePagerAdapter {
@@ -22,11 +24,11 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
                 TopicTabFragment tab1 = new TopicTabFragment();
                 return tab1;
             case 1:
-                TopicTabFragment tab2 = new TopicTabFragment();
+                HotTabFragment tab2 = new HotTabFragment();
 //                HotTabFragment tab2=new HotTabFragment();
                 return tab2;
             case 2:
-                TopicTabFragment tab3 = new TopicTabFragment();
+                MyTabFragment tab3 = new MyTabFragment();
 //                TabFragment3 tab3=new TabFragment3();
                 return tab3;
         }

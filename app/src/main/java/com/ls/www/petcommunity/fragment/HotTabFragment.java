@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -85,13 +86,13 @@ public class HotTabFragment extends Fragment {
 
     // 文章推荐
     private ListView listView;
-    private List<Map<String,Object>> data_2 = new ArrayList<>();
+    private List<Map<String, Object>> data_2 = new ArrayList<>();
     private SimpleAdapter simpleAdapter;
     private DisplayImageOptions options; // 设置图片显示相关参数
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_hot_tab,container,false);
 
         findView();
@@ -135,13 +136,11 @@ public class HotTabFragment extends Fragment {
                 }
             });
         }
-
     }
 
     public void initialization() {
         //寻找创建时间最近的三个活动图片
-        BmobQuery<tb_pop_events> query;
-        query = new BmobQuery("tb_pop_events");
+        BmobQuery<tb_pop_events> query = new BmobQuery("tb_pop_events");
         query.order("-createdAt");
         query.setLimit(3);//返回三条数据；
         query.findObjects(new FindListener<tb_pop_events>() {
