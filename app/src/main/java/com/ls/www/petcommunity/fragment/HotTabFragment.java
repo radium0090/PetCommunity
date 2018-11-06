@@ -218,6 +218,7 @@ public class HotTabFragment extends Fragment {
         });
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     public void clickEvents() {
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

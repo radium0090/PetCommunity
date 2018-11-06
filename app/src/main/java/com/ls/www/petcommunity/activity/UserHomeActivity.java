@@ -256,7 +256,7 @@ public class UserHomeActivity extends AppCompatActivity {
         });
 
         //查询该用户的笔记本
-        BmobQuery<tb_collection> query4 = new BmobQuery("collection");
+        BmobQuery<tb_collection> query4 = new BmobQuery("tb_collection");
         query4.addWhereEqualTo("userOnlyId", objectId);// 查询当前用户的所有笔记本
         query4.order("createdAt");
         query4.findObjects(new FindListener<tb_collection>() {

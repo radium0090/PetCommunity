@@ -81,7 +81,7 @@ public class HomepageAdapter extends RecyclerView.Adapter<HomepageAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(final HomepageAdapter.ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final HomepageAdapter.ViewHolder holder, final int position) {
         CollectionModel book = cardList.get(position);
         holder.id.setText(book.getId());
         holder.name.setText(book.getName());
